@@ -1,0 +1,7 @@
+lamp-dev:
+    image: mrnutter/lamp-dev
+    container_name: lamp-dev
+    ports:
+     - 8080:80
+    volumes:
+     - .:/var/www
