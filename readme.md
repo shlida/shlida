@@ -36,5 +36,5 @@ DB_PASSWORD=
 - test connection : open browser go to `localhost:8080/testDbConnection`
 
 ## for Frontend Dev mode
-wanna background watch sass & vuejs run `npm run watch`
-wanna build once run `npm run dev` < this way do once per change made
+- wanna background watch sass & vuejs run `npm run watch`
+- wanna build once run `npm run dev` < this way do once per change made
