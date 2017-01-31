@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Test connect database
+Route::get('/testDbConnection', function () {
+    dd('Connected to the DB: ' . DB::connection()->getDatabaseName());
+});
