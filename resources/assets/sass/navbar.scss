@@ -1,0 +1,242 @@
+@import "../../../node_modules/bootstrap/scss/_variables.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+.header-jeban-logo{
+	text-align: center;
+	padding: 20px 0px;
+	img{
+		width: 20%;	
+	}
+}
+nav{
+	font-size: 13px;
+
+	.navbar-toggler-icon{
+		width: 20px;
+	}
+	.navbar-toggler{
+		padding: 0;
+		border: 0;
+	}	
+	.user-avatar{
+		border-radius: 100%;
+	}
+	.user-section{
+		position: relative;
+		align-items: center;
+		span{
+			margin-left: 5px;
+		}
+	}
+	a{
+		text-decoration: none;
+	}
+	.flex-left{
+		margin-left: auto;
+	}
+	&.navbar-top{
+		ul{
+			&:first-child{
+				width: 100%;
+			}
+		}
+		.user-section{
+			position: absolute;
+			top: -110%;
+			right: 0;
+			> li.dropdown{
+				border-left: 1px solid $dark-gray;
+			}
+			#user-desktop-dropdown{
+				position: absolute;
+				right: 0;
+				background-color: #F7F7F7;
+				padding: 20px;
+				z-index: 99;
+			}
+		}
+		.mobile-search{
+			> a{
+				display: inline-block;
+			}
+		}
+	}
+	&.navbar-scroll{
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 999;
+		transition: 0.2s ease-in-out;
+		&.hidden{
+			transform: translateY(-100%);
+		}
+		&.show{
+			transform: translateY(0%);
+		}
+		.mobile-jeban-logo{
+			img{
+				width: 15%;
+			}
+		}
+		.user-section{
+			button{
+				span{
+					margin-left: 0;
+				}
+			}
+			#user-mobile-dropdown{
+				position: absolute;
+				right: 0;
+				background-color: #F7F7F7;
+				padding: 20px;
+				z-index: 99;
+			}
+		}
+		#menu-mobile-dropdown{
+			position: absolute;
+			top: 40px;
+			left: -16px;
+			z-index: 99;
+			background-color: #F7F7F7;
+			padding: 20px;
+			li{
+				a{
+					display: flex;
+					align-items: center;
+				}
+				i{
+					opacity: 1;
+					font-size: 16px;
+					padding: 5px 0px;
+				}
+				span{
+					margin-left: 10px;
+					padding: 5px 0px;
+					border-bottom: 1px solid $gray;
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+#jeban-section{
+	li{
+		i{
+			opacity: 0;
+		}
+	}
+}
+
+@include media-breakpoint-down(md) {
+    nav{
+    	.jeban-search{
+	    	position: absolute;
+	    	margin-left: 5%;
+	    	top: 0;
+	    	height: 100%;
+	    	a{
+	    		margin-top: 50%;
+	    		transform: translateY(-40%);
+	    	}
+	    }
+	    &.navbar-top{
+	    	flex-direction: row;
+	    	justify-content: space-between;
+	    	align-items: center;
+			ul{
+				&:first-child{
+					width: auto;
+				}
+			}
+			.user-section{
+		    	position: relative;
+		    	> li.dropdown{
+		    		border: none;
+		    	}
+			}
+			.mobile-search{
+				margin-left: 29%;
+				> a.jeban-social{
+					display: none;
+				}
+			}
+	    }
+		&.navbar-scroll{
+			.user-section{
+				.mobile-search{
+					position: absolute;
+					transform: translateX(100%);
+				}
+			}
+			.mobile-jeban-logo{
+				display: none;
+			}
+		}
+    }
+	.header-jeban-logo{
+		position: absolute;
+		z-index: 99;
+		left: 50%;
+		transform: translate(-50%, 30%);
+		padding: 0;
+		img{
+			width: 30%;
+			transform: translateY(60%);
+		}
+	}
+	#jeban-section{
+		position: absolute;
+		top: 40px;
+		left: 0;
+		z-index: 99;
+		background-color: #F7F7F7;
+		padding: 20px;
+		li{
+			a{
+				display: flex;
+				align-items: center;
+			}
+			i{
+				opacity: 1;
+				font-size: 16px;
+				padding: 5px 0px;
+			}
+			span{
+				margin-left: 10px;
+				padding: 5px 0px;
+				border-bottom: 1px solid $gray;
+				width: 100%;
+			}
+		}
+	}
+}
+@include media-breakpoint-down(sm) {
+	nav{
+    	&.navbar-top{
+			.user-section{
+				a{
+					span{
+			    		display: none;
+			    	}	
+				}
+			}
+    	}
+		&.navbar-scroll{
+			.user-section{
+				.mobile-create,
+				.mobile-user{
+					span{
+						display: none;
+					}
+				}
+			}
+		}
+    }
+    .header-jeban-logo{
+		img{
+			width: 45%;
+			transform: translateY(80%);
+		}
+	}
+}

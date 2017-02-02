@@ -14,6 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/document', function () {
+    return view('document');
+});
+// Route::get('/test', function () {
+//     return view('test');
+// });
 
 //Test connect database
 Route::get('/testDbConnection', function () {
