@@ -8,7 +8,7 @@
 @section('title', 'Jeban Document Style')
 
 @section('style')
-    <link href="/css/navbar.css" rel="stylesheet">
+    <link href="{{ mix('/css/navbar.css') }}" rel="stylesheet">
 @endsection
 
 @section('script')
@@ -22,11 +22,11 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card" style="margin: 30px 0px;">                
+            <div class="card" style="margin: 30px 0px;">
                 <div class="card-block">
 
                     <h4 class="card-title">Button</h4> <br>
-                    
+
                     <code>&lt;button class="btn btn-primary"/&gt;</code> <br><br>
                     <button class="btn btn-primary">NEXT</button> <br><br>
                     <code>&lt;button class="btn btn-secondary"/&gt;</code> <br><br>
@@ -82,7 +82,7 @@
 
 
 
-        
+
 
                     <br><br><br>
                     <h4 class="card-title">Form</h4> <br>
