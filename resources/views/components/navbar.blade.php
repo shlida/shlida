@@ -1,7 +1,7 @@
 <div class="header-jeban-logo">
     <a href="#">
         <img src="http://s.jeban.com/2014/web/images/jeban-logo.png">
-    </a>  
+    </a>
 </div>
 
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-top">
@@ -21,7 +21,7 @@
                     <li class="nav-item"><a class="nav-link" href="#"><i class="icon-vdo"></i><span>VDO<span/></a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="icon-star"></i><span>Shine Girls<span/></a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="icon-event"></i><span>Event<span/></a></li>
-                </ul>  
+                </ul>
             </div>
         </li>
         <li class="nav-item flex-left mobile-search">
@@ -35,6 +35,20 @@
 
     <!-- start user section -->
     <ul class="nav justify-content-end user-section">
+      @if (Auth::guest())
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/login') }}">
+          <i class="fa fa-edit"></i>
+          <span>Login</span>
+        </a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/register') }}">
+            <i class="fa fa-edit"></i>
+            <span>Register</span>
+          </a>
+        </li>
+      @else
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fa fa-edit"></i>
@@ -50,8 +64,19 @@
               <a class="nav-item" href="#">My page</a>
               <a class="nav-item" href="#">Notifications</a>
               <a class="nav-item" href="#">mgmt</a>
+              <a href="{{ url('/logout') }}"
+                  onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                  Logout
+              </a>
+
+              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
+
             </div>
         </li>
+      @endif
     </ul>
     <!-- end user section -->
 </nav>
@@ -74,7 +99,7 @@
                     <li class="nav-item"><a class="nav-link" href="#"><i class="icon-vdo"></i><span>VDO<span/></a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="icon-star"></i><span>Shine Girls<span/></a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="icon-event"></i><span>Event<span/></a></li>
-                </ul>  
+                </ul>
             </div>
         </li>
         <li class="nav-item mobile-jeban-logo">
