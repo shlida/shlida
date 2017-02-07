@@ -17,7 +17,7 @@ class CreateBadgeLevelsTable extends Migration
             $table->integer('badge_id')->unsigned();
             $table->integer('badge_level')->unsigned();
             $table->string('image_url');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
 
             $table->unique(['badge_id', 'badge_level']);

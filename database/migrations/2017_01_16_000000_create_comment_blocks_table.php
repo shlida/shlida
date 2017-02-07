@@ -18,8 +18,8 @@ class CreateCommentBlocksTable extends Migration
             $table->integer('comment_id')->unsigned();
             $table->integer('block_order');
             $table->string('block_type');
-            $table->string('config');
-            $table->string('content');
+            $table->string('config')->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateUserAddressTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('title');
-            $table->string('address');
+            $table->text('address');
             $table->string('province');
             $table->string('zipcode');
             $table->string('country');

@@ -16,7 +16,7 @@ class CreateReportReasonsTable extends Migration
         Schema::create('report_reasons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('desciption');
+            $table->text('desciption');
             $table->timestamps();
         });
     }

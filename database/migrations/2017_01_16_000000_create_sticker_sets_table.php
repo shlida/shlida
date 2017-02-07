@@ -16,7 +16,7 @@ class CreateStickerSetsTable extends Migration
         Schema::create('sticker_sets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('set_icon_url');
             $table->integer('published')->default(1);
             $table->timestamps();
