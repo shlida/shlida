@@ -18,10 +18,10 @@ class CreateTopicBlocksTable extends Migration
             $table->integer('topic_id')->unsigned();
             $table->integer('block_order');
             $table->string('block_type');
-            $table->string('config');
-            $table->string('content');
-            $table->string('relate_content_type');
-            $table->integer('relate_content_id');
+            $table->string('config')->nullable();
+            $table->text('content')->nullable();
+            $table->string('relate_content_type')->nullable();
+            $table->integer('relate_content_id')->nullable();
             $table->timestamps();
         });
     }

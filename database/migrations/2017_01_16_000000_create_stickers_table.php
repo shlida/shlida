@@ -17,7 +17,7 @@ class CreateStickersTable extends Migration
             $table->increments('id');
             $table->integer('set_id');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('sticker_url');
             $table->integer('published')->default(1);
             $table->timestamps();

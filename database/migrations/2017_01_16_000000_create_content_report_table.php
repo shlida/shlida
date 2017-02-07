@@ -18,7 +18,7 @@ class CreateContentReportTable extends Migration
             $table->integer('content_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('reason_id')->unsigned();
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
             $table->integer('reviewed')->default(0);
             $table->timestamps();
 
