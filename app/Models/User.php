@@ -65,16 +65,16 @@ class User extends Authenticatable
      */
     public function saveTopics()
     {
-        return $this->morphToMany('App\Models\Topic', 'content', 'content_save');
+        return $this->morphedByMany('App\Models\Topic', 'content', 'content_save');
     }
 
     public function saveSwatch()
     {
-        return $this->morphToMany('App\Models\Swatch', 'content', 'content_save');
+        return $this->morphedByMany('App\Models\Swatch', 'content', 'content_save');
     }
 
     public function saveEvents()
     {
-        return $this->morphToMany('App\Models\Event', 'content', 'content_save');
+        return $this->morphedByMany('App\Models\Event', 'content', 'content_save');
     }
 }

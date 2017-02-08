@@ -8,12 +8,12 @@ class Event extends Model
 {
     public function loveUsers()
     {
-        return $this->morphedByMany('App\Models\User', 'content', 'content_love');
+        return $this->morphToMany('App\Models\User', 'content', 'content_love');
     }
 
     public function saveUsers()
     {
-        return $this->morphedByMany('App\Models\User', 'content', 'content_save');
+        return $this->morphToMany('App\Models\User', 'content', 'content_save');
     }
 
     public function issues()
