@@ -21,6 +21,11 @@ class Swatch extends Model
         return $this->morphToMany('App\Models\User', 'content', 'content_save');
     }
 
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'content');
+    }
+
     public function colors()
 	{
 		return $this->belongsToMany('App\Models\Color', 'swatch_color_tone');
