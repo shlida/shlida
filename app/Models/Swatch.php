@@ -13,7 +13,7 @@ class Swatch extends Model
 
     public function loveUsers()
     {
-        return $this->morphedByMany('App\Models\User', 'content', 'content_love');
+        return $this->morphToMany('App\Models\User', 'content', 'content_love');
     }
 
     public function saveUsers()

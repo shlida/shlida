@@ -20,6 +20,9 @@ Route::get('/home', function () {
 Route::get('/document', function () {
     return view('document');
 });
+Route::get('/board', 'TopicController@index');
+Route::get('/event', 'EventController@index');
+Route::get('/swatch', 'SwatchController@index');
 
 Route::Auth();
 
