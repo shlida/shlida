@@ -18,7 +18,7 @@ class Swatch extends Model
 
     public function saveUsers()
     {
-        return $this->morphedByMany('App\Models\User', 'content', 'content_save');
+        return $this->morphToMany('App\Models\User', 'content', 'content_save');
     }
 
     public function colors()
