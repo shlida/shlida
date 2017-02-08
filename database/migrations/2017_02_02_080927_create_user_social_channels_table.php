@@ -15,7 +15,7 @@ class CreateUserSocialChannelsTable extends Migration
     {
         Schema::create('user_social_channels', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->string('channel_name');
+            $table->string('channel_name', 50);
             $table->string('channel_url');
             $table->timestamps();
 

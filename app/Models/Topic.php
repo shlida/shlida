@@ -13,12 +13,12 @@ class Topic extends Model
 
     public function loveUsers()
     {
-        return $this->morphToMany('App\Models\User', 'content', 'content_love');
+        return $this->morphedByMany('App\Models\User', 'content', 'content_love');
     }
 
     public function saveUsers()
     {
-        return $this->morphToMany('App\Models\User', 'content', 'content_save');
+        return $this->morphedByMany('App\Models\User', 'content', 'content_save');
     }
 
     public function blocks()

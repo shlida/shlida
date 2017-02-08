@@ -24,12 +24,12 @@ export default {
   		const authUser = {}
 
   		axios.post(loginUrl, postData)
-  		.then(response => {
-  				if (response.status === 200) {
-  					console.log(response.data);
-            window.location.href='/document'
-  				}
-	    });
+	  		.then(response => {
+	  				if (response.status === 200) {
+	  					console.log(response.data);
+			            window.location.href='/document'
+	  				}
+		    });
 		},
 
 		getUser: function () {

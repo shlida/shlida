@@ -16,7 +16,7 @@ class CreateStickersTable extends Migration
         Schema::create('stickers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('set_id');
-            $table->string('title');
+            $table->string('title', 50);
             $table->text('description');
             $table->string('sticker_url');
             $table->integer('published')->default(1);

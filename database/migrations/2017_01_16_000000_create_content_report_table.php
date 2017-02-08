@@ -14,11 +14,11 @@ class CreateContentReportTable extends Migration
     public function up()
     {
         Schema::create('content_report', function (Blueprint $table) {
-            $table->string('content_type');
+            $table->string('content_type', 10);
             $table->integer('content_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('reason_id')->unsigned();
-            $table->string('remarks')->nullable();
+            $table->text('remarks')->nullable();
             $table->integer('reviewed')->default(0);
             $table->timestamps();
 
