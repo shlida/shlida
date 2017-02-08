@@ -1,8 +1,4 @@
-!/node_modules
-/node_modules/*
-!/node_modules/bootstrap
-/node_modules/bootstrap/*
-!/node_modules/bootstrap/scss
+/node_modules
 /public/storage
 /public/js
 /public/css
@@ -16,5 +12,3 @@ Homestead.yaml
 supervisord.log
 supervisord.pid
 .sass-cache
-
-
