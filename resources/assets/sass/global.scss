@@ -1,0 +1,378 @@
+@import "_variables.scss";
+
+*:focus {
+    outline: 0 !important;
+}
+p {
+    margin-bottom: 0;
+}
+
+body {
+    font-family: inherit;
+}
+h1{
+    font-family: $font-family-heavent-reg !important;
+    font-size: 2.125rem; //34px
+}
+h2{
+    font-family: $font-family-heavent-cond !important;
+    font-size: 1.75rem; //28px
+}
+h3{
+    font-family: $font-family-heavent-reg !important;
+    font-size: 1.5rem; //24px
+}
+h4{
+    font-family: $font-family-heavent-li !important;
+    font-size: 1.375rem; //22px
+}
+h5{
+    font-family: $font-family-heavent-li !important;
+    font-size: 1.25rem; //20px
+}
+h6{
+    font-family: $font-family-heavent-li !important;
+    font-size: 1.125rem; //18px
+}
+
+/* button */
+.btn {
+    text-transform: uppercase;
+    font-family: $font-family-heavent-li;
+    font-size: $btn-font-size;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3125rem 0.9375rem;
+    border-radius: 0.3125rem;
+    i {
+        font-size: $btn-icon-font-size;
+        color: $light-blue;
+        &.space-left {
+            margin-left: 0.3125rem;
+        }
+        &.space-right {
+            margin-right: 0.3125rem;
+        }
+    }
+    &:hover,
+    &:focus {
+        font-family: $font-family-heavent-reg;
+    }
+}
+
+.btn-primary {
+    position: relative;
+    color: $btn-primary-color;
+    background: $btn-primary-bg;
+    border-color: $btn-primary-border;
+    &:hover,
+    &:focus {
+        color: $btn-primary-color;
+        text-decoration: none;
+        border: 1px solid $gray;
+        background-color: $pale-blue;
+        box-shadow: $btn-focus-box-shadow;
+    }
+    &.btn-reply {
+        background-color: $btn-primary-bg;
+        color: $btn-primary-color;
+        border-color: $btn-primary-border;
+        &.active:after,
+        &.active:before{
+            content: '';
+            display: block;
+            position: absolute;
+            left: 35px;
+            bottom: -5px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        &.active:after {
+            border-color: $btn-primary-bg transparent transparent transparent;
+            border-width: 7px;
+            bottom: -13px;
+        }
+        &.active:before {
+            border-color: $btn-primary-border transparent transparent transparent;
+            border-width: 7px;
+            bottom: -14px;
+        }
+    }
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        border: 1px solid $light-blue;
+        background-color: $pale-blue;
+        box-shadow: $btn-focus-box-shadow;
+        &.active:after {
+            transition: all 0.2s ease-in-out;
+            border-color: $pale-blue transparent transparent transparent;
+        }
+    }
+}
+
+.btn-secondary {
+    color: $btn-secondary-color;
+    background: $btn-secondary-bg;
+    border-color: $btn-secondary-border;
+    &:hover,
+    &:focus {
+        color: $btn-secondary-color;
+        text-decoration: none;
+        background-color: $dark-gray;
+        box-shadow: $btn-focus-box-shadow;
+    }
+}
+
+.btn-icon-only {
+    color: $btn-icon-only-color;
+    background: $btn-icon-only-bg;
+    border-color: $btn-icon-only-border;
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        box-shadow: none;
+    }
+}
+
+.btn-circle {
+    color: $btn-circle-color;
+    background: $btn-circle-bg;
+    border-color: $btn-circle-border;
+    width: $btn-circle-width;
+    height: $btn-circle-width;
+    border-radius: 50%;
+    box-shadow: $btn-circle-shadow;
+    i {
+        color: $coral;
+        font-size: $btn-circle-font-size;
+        margin-top: 3.5px;
+        margin-left: 4.5px;
+        -ms-transform: rotate(-30deg); /* IE 9 */
+        -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
+        transform: rotate(-30deg);
+    }
+    &:hover,
+    &:focus {
+        box-shadow: $btn-circle-shadow;
+        background-color: $coral;
+        border-color: $coral;
+        i {
+        color: $white;
+        }
+    }
+    &:active,
+    &.active {
+        background-color: $coral;
+        border-color: $coral;
+        color: $white;
+        i {
+            color: $white;
+        }
+    }
+}
+
+.btn-sm {
+    font-size: 1rem;
+}
+
+
+/* form */
+.form-control {
+    background-color: #f5f6f6;
+    border: 1px solid $light-gray;
+    padding: 12px 20px;
+    &::placeholder {
+        color: $input-place-holder;
+    }
+    &:focus {
+        border: 1px solid $light-blue;
+        background: $white;
+        box-shadow: $input-focus-box-shadow;
+        + .input-group-btn {
+            > .btn {
+                border: 1px solid $light-blue;
+                box-shadow: $input-focus-box-shadow;
+            }
+        }
+    }
+}
+select.form-control {
+    background: $white;
+}
+
+// Jeban custom radio button
+.custom-radio {
+    display: none;
+    & + label{
+        font-weight: normal;
+    }
+    & + label span {
+        display: inline-block;
+        position: relative;
+        border: 1px solid $gray;
+        border-radius: 100%;
+        width: 15px;
+        height: 15px;
+        margin-right: 15px;
+        &:after {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            font-family: FontAwesome;
+            content: '\2022';
+            font-size: 23px;
+            line-height: 0.5;
+            color: $light-blue;
+        }
+    }
+    &:checked {
+        & + label span {
+            background-color: $gray;
+            &:after {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.custom-checkbox {
+    display: none;
+    & + label{
+        font-weight: normal;
+    }
+    & + label span {
+        display: inline-block;
+        position: relative;
+        border: 1px solid $gray;
+        border-radius: 2px;
+        width: 15px;
+        height: 15px;
+        margin-right: 15px;
+        &:after {
+            position: absolute;
+            top: -1px;
+            font-size: 11px;
+            left: 1px;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            font-family: "jeban-iconset";
+            content: '\e805';
+            color: $light-blue;
+        }
+    }
+    &:checked {
+        & + label span {
+            background-color: $gray;
+        }
+        & + label span:after {
+            opacity: 1;
+        }
+    }
+}
+
+/* custom form */
+.custom-file {
+    width: 100%;
+    padding: 22px;
+}
+
+.custom-file-control {
+    line-height: $custom-file-line-height;
+    color: $custom-file-color;
+    pointer-events: none;
+    user-select: none;
+    background-color: #f5f6f6;
+    border: 1px solid $light-gray;
+    padding: 22px;
+    &::before {
+        padding: $custom-file-padding-x $custom-file-padding-y;
+        color: $custom-file-button-color;
+        line-height: 2;
+        height: auto;
+        background-color: $gray;
+        color: $white;
+        border: 1px solid $light-gray;
+    }
+    &:lang(en) {
+        &::after {
+        content: '';
+        }
+    }
+}
+
+/* issue */
+.issue {
+    background-color: $pale-blue;
+    border: 1px solid $light-blue;
+    border-radius: 15px;
+    padding: 5px 15px;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        box-shadow: $issue-focus-box-shadow;  
+    }
+}
+
+.issue-select {
+    display:none;
+    & + label{
+        border: 1px solid $light-blue;
+        padding: 5px 10% 5px 15px;
+        border-radius: 15px;
+        font-weight: normal;
+        cursor: pointer;
+        position: relative;
+        i{
+            font-family: "jeban-iconset";
+            position: absolute;
+            right: 15px;
+            top: 4px;
+            color: $pale-blue;
+        }
+        &:hover,
+        &:focus {
+            background-color: $pale-blue;
+            box-shadow: $issue-focus-box-shadow;
+            i{
+                color: $white;
+            }
+        }
+    }
+    &:checked {
+        & + label {
+            color: white;
+            background-color: $gray;
+            &:hover,
+            &:focus{
+                background-color: $dark-gray;
+            }
+        }
+    }
+}
+
+/* _input-group.scss */
+.input-group-addon {
+	background: none;
+	border: 0;
+	padding: 12px 20px;
+}
+.input-group {
+    .input-group-addon {
+        position: absolute;
+        z-index: 9;
+        border: 0;
+        padding: 0;
+        margin: 12px 20px;
+        & + .form-control{
+            border-radius: $input-border-radius !important;
+            padding: 12px 20px 12px 60px;
+        }
+    }
+}
