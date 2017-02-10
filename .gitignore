@@ -12,3 +12,4 @@ Homestead.yaml
 supervisord.log
 supervisord.pid
 .sass-cache
+*/.DS_Store

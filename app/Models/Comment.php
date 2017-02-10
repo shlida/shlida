@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $appends = array('love_count');
+
     public function user()
 	{
 		return $this->belongsTo('App\Models\User');
@@ -29,5 +31,10 @@ class Comment extends Model
     public function replies()
     {
         return $this->morphMany('App\Models\Comment', 'content');
+    }
+
+    public function getLoveCountAttribute()
+    {
+        return $this->loveUsers()->count();
     }
 }

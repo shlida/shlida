@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+
+    protected $appends = array('love_count','comment_count');
+
     public function user()
 	{
 		return $this->belongsTo('App\Models\User');
@@ -35,4 +38,24 @@ class Topic extends Model
 	{
 		return $this->morphToMany('App\Models\Issue', 'content', 'content_issue_relate');
 	}
+
+    public function getLoveCountAttribute()
+    {
+        return $this->loveUsers()->count();
+    }
+
+    public function getCommentCountAttribute()
+    {
+        return $this->comments()->count();
+    }
+
+    public function scopeType($query,$type)
+    {
+        return $query->where('topic_type', strtoupper($type));
+    }
+
+    public function scopeDatePublish($query,$date)
+    {
+        return $query->whereDate('published_on', $date);
+    }
 }

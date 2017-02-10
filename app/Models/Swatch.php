@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Swatch extends Model
 {
+
+    protected $appends = array('love_count');
+
     public function user()
 	{
 		return $this->belongsTo('App\Models\User');
@@ -44,5 +47,15 @@ class Swatch extends Model
     public function relateTopicBlocks()
     {
         return $this->morphMany('App\Models\TopicBlock', 'relate_content');
+    }
+
+    public function getLoveCountAttribute()
+    {
+        return $this->loveUsers()->count();
+    }
+
+    public function scopeType($query)
+    {
+
     }
 }

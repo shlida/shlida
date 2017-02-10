@@ -30,4 +30,18 @@ class Event extends Model
     {
         return $this->morphMany('App\Models\TopicBlock', 'relate_content');
     }
+
+    public function scopeType($query,$type)
+    {
+        return $query->where('event_type', strtoupper($type));
+    }
+
+    public function scopeSortByLates($query)
+    {
+        return $query->orderBy('id','DESC');
+    }
+    public function scopeSortByUpcoming($query)
+    {
+        return $query->whereRaw('CURDATE() <= end_date')->orderBy('start_date','ASC');
+    }
 }
