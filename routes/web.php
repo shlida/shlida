@@ -14,14 +14,52 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', function () {
+    return view('document');
+});
 Route::get('/document', function () {
     return view('document');
 });
-// Route::get('/test', function () {
-//     return view('test');
+
+Route::get('/board', 'TopicController@index');
+Route::get('/event', 'EventController@index');
+Route::get('/swatch', 'SwatchController@index');
+
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::get('/board/{type}', 'TopicController@listing');
+    Route::get('/board/{type}/{date}', 'TopicController@listing');
+
+    Route::get('/event/{type}','EventController@listing');
+    Route::get('/event/{type}/{sort}','EventController@listing');
+
+});
+
+Route::Auth();
+
+//Route::get('/auth/{provider}', 'SocialAuthController@redirect');
+//Route::get('/auth/{provider}/callback', 'SocialAuthController@callback');
+
+// Route::group(['prefix' => 'api/v1'], function () {
+
+//     Route::post('/auth', 'Auth\LoginController@apiAuth');
+
 // });
 
-//Test connect database
-Route::get('/testDbConnection', function () {
-    dd('Connected to the DB: ' . DB::connection()->getDatabaseName());
-});
+// Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function () {
+
+// 	Route::get('/testapi', function () {
+// 		$result = [	'success' => true,
+// 	            	'description' => 'authen success',
+// 	            	'data' => [ 'session' => csrf_token(),
+// 	                			    'id' => 1,
+//                             'name' => 'aa@aa.co',
+//                             'verified' => true,
+//                           ]
+//               ];
+
+// 	    return response()->json($result, 200);
+// 	});
+// });
+
+route::get('/redirect', 'Auth\LoginController@getRedirect');
+route::get('/redirect/{url}', 'Auth\LoginController@setRedirect');

@@ -17,10 +17,10 @@ class CreateUserAddressTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('title');
-            $table->string('address');
-            $table->string('province');
-            $table->string('zipcode');
-            $table->string('country');
+            $table->text('address');
+            $table->string('province', 50);
+            $table->string('zipcode', 10);
+            $table->string('country', 25);
             $table->timestamps();
         });
     }

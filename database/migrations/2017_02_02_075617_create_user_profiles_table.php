@@ -15,11 +15,12 @@ class CreateUserProfilesTable extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->integer('user_id')->unique();
+            $table->string('gender', 1)->nullable();
             $table->date('birth_date')->nullable();
-            $table->string('about_me')->nullable();
-            $table->string('firstname')->nullable();
-            $table->string('lastname')->nullable();
-            $table->string('nickname')->nullable();
+            $table->text('about_me')->nullable();
+            $table->string('firstname', 50)->nullable();
+            $table->string('lastname', 50)->nullable();
+            $table->string('nickname', 50)->nullable();
             $table->string('telephone')->nullable();
             $table->string('skin_types')->nullable();
             $table->string('skin_problems')->nullable();

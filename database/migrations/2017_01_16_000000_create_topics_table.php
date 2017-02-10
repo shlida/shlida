@@ -21,7 +21,7 @@ class CreateTopicsTable extends Migration
             $table->integer('published')->default(0);
             $table->datetime('published_on');
             $table->integer('drafted')->default(1);
-            $table->datetime('scheduled_on');
+            $table->datetime('scheduled_on')->nullable();
             $table->string('cover_url');
             $table->integer('lived')->default(0);
             $table->integer('allow_only_member_view')->default(0);

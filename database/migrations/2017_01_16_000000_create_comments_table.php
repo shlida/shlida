@@ -15,12 +15,11 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('content_type');
+            $table->string('content_type', 10);
             $table->integer('content_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('published')->default(1);
-            $table->datetime('published_on');
-            $table->enum('comment_type',['NORMAL','LIVE']);
+            $table->enum('comment_type',['NORMAL','LIVE'])->default('NORMAL');
             $table->timestamps();
         });
     }

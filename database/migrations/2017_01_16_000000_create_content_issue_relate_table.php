@@ -14,7 +14,7 @@ class CreateContentIssueRelateTable extends Migration
     public function up()
     {
         Schema::create('content_issue_relate', function (Blueprint $table) {
-            $table->string('content_type');
+            $table->string('content_type', 10);
             $table->integer('content_id')->unsigned();
             $table->integer('issue_id')->unsigned();
             $table->timestamps();

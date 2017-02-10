@@ -15,7 +15,7 @@ class CreateColorsTable extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('title', 25);
             $table->string('color_code');
         });
     }

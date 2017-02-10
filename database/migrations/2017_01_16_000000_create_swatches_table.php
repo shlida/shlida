@@ -17,7 +17,7 @@ class CreateSwatchesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('image_url');
-            $table->string('caption');
+            $table->text('caption');
             $table->integer('published')->default(1);
             $table->timestamps();
         });

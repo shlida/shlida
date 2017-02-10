@@ -15,8 +15,8 @@ class CreateUserSocialAccountsTable extends Migration
     {
         Schema::create('user_social_accounts', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->string('provider_user_id');
-            $table->string('provider');
+            $table->string('provider_user_id', 100);
+            $table->string('provider', 50);
             $table->timestamps();
 
             $table->unique(['user_id', 'provider']);
