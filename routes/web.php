@@ -21,17 +21,23 @@ Route::get('/document', function () {
     return view('document');
 });
 
-Route::get('/event', 'EventController@index');
-Route::get('/event/{id}','EventController@show');
-
-Route::get('/swatch', 'SwatchController@index');
-Route::get('/swatch/{id}', 'SwatchController@show');
-
 Route::get('/board', 'TopicController@index');
 Route::get('/topic/{id}', 'TopicController@show');
 
-// Route::get('/find/product/{keyword}/{limit}');
-// Route::get('/find/issue/{keyword}/{limit}');
+Route::group(['prefix' => 'event'], function () {
+    Route::get('/', 'EventController@index');
+    Route::get('/{id}','EventController@show');
+});
+
+Route::group(['prefix' => 'swatch'], function () {
+    Route::get('/', 'SwatchController@index');
+    Route::get('/{id}', 'SwatchController@show');
+});
+
+Route::group(['prefix' => 'find'], function () {
+    Route::get('/product/{keyword}/{limit}', 'FindController@product');
+    Route::get('/issue/{keyword}/{limit}', 'FindController@issue');
+});
 
 Route::group(['prefix' => 'api/v1'], function () {
     Route::get('/board/{type}', 'TopicController@listing');
@@ -44,31 +50,6 @@ Route::group(['prefix' => 'api/v1'], function () {
 });
 
 Route::Auth();
-
-//Route::get('/auth/{provider}', 'SocialAuthController@redirect');
-//Route::get('/auth/{provider}/callback', 'SocialAuthController@callback');
-
-// Route::group(['prefix' => 'api/v1'], function () {
-
-//     Route::post('/auth', 'Auth\LoginController@apiAuth');
-
-// });
-
-// Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function () {
-
-// 	Route::get('/testapi', function () {
-// 		$result = [	'success' => true,
-// 	            	'description' => 'authen success',
-// 	            	'data' => [ 'session' => csrf_token(),
-// 	                			    'id' => 1,
-//                             'name' => 'aa@aa.co',
-//                             'verified' => true,
-//                           ]
-//               ];
-
-// 	    return response()->json($result, 200);
-// 	});
-// });
 
 route::get('/redirect', 'Auth\LoginController@getRedirect');
 route::get('/redirect/{url}', 'Auth\LoginController@setRedirect');
