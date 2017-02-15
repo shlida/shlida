@@ -21,6 +21,11 @@ class Event extends Model
         return $this->morphToMany('App\Models\User', 'content', 'content_save');
     }
 
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'content');
+    }
+
     public function issues()
 	{
 		return $this->morphToMany('App\Models\Issue', 'content', 'content_issue_relate');

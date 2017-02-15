@@ -21,9 +21,17 @@ Route::get('/document', function () {
     return view('document');
 });
 
-Route::get('/board', 'TopicController@index');
 Route::get('/event', 'EventController@index');
+Route::get('/event/{id}','EventController@show');
+
 Route::get('/swatch', 'SwatchController@index');
+Route::get('/swatch/{id}', 'SwatchController@show');
+
+Route::get('/board', 'TopicController@index');
+Route::get('/topic/{id}', 'TopicController@show');
+
+// Route::get('/find/product/{keyword}/{limit}');
+// Route::get('/find/issue/{keyword}/{limit}');
 
 Route::group(['prefix' => 'api/v1'], function () {
     Route::get('/board/{type}', 'TopicController@listing');
@@ -32,6 +40,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('/event/{type}','EventController@listing');
     Route::get('/event/{type}/{sort}','EventController@listing');
 
+    Route::get('/issue/{keyword}','IssueController@listing');
 });
 
 Route::Auth();

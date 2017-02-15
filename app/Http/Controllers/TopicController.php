@@ -16,16 +16,11 @@ class TopicController extends Controller
     public function index()
     {
         $topics = Topic::with('user')->get();
-        //dd($topics);
-        foreach ($topics as $topic) {
-            echo 'title : '.$topic->title.'<br>';
-            echo 'type : '.$topic->topic_type.'<br>';
-            echo 'by : '.$topic->user->username.'<br>';
-            echo 'day : '.$topic->published_on.'<br>';
-            echo 'love count : '.$topic->love_count.'<br>';
-            echo 'comment count : '.$topic->comment_count.'<br>';
-            echo '<br>';
-        }
+
+        $data = [
+            'topics' => $topics
+        ];
+        return;
     }
 
     /**
@@ -57,7 +52,8 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        //
+        $topics = Topic::with('user','blocks','issues','comments')->get()->find($id);
+        return;
     }
 
     /**
@@ -105,7 +101,6 @@ class TopicController extends Controller
             $topics->DatePublish($date);
         
         $topics = $topics->paginate(1);
-        echo json_encode($topics);
         
         return;
     }

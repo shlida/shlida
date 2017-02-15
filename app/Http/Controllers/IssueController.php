@@ -3,24 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Event;
+use App\Models\Issue;
 
-class EventController extends Controller
+class IssueController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $events = Event::with('places')->get();
-
-        $data = [
-            'events' => $events
-        ];
-        return;
+        //
     }
 
     /**
@@ -52,8 +46,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $events = Event::with('places','issues','comments')->get()->find($id);
-        return;
+        //
     }
 
     /**
@@ -90,20 +83,9 @@ class EventController extends Controller
         //
     }
 
-    public function listing($type = false, $sort = false)
+    public function listing($keyword = false)
     {
-        $events = Event::with('places');   
-        
-        if ($type && $type != 'all')
-            $events->Type($type);
-        
-        if ($sort && $sort == 'latest')
-            $events->SortByLates($sort);
-        elseif ($sort && $sort == 'upcoming')
-            $events->SortByUpcoming($sort);
-        
-        $events = $events->paginate(2);
-        
+        $issues = Issue::where('title',$keyword)->get();
         return;
     }
 }
