@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Event extends Model
 {
+    protected $appends = array('date');
+
     public function places()
 	{
 		return $this->belongsToMany('App\Models\Place', 'event_place_locate');
@@ -34,6 +37,19 @@ class Event extends Model
     public function relateTopicBlocks()
     {
         return $this->morphMany('App\Models\TopicBlock', 'relate_content');
+    }
+
+    public function getDateAttribute()
+    {
+        //$date = Carbon::now()->month;
+        $start_month = Carbon::createFromFormat('Y-m-d', $this->start_date, 'Asia/Bangkok');
+        $end_month = Carbon::createFromFormat('Y-m-d', $this->end_date, 'Asia/Bangkok');
+
+        if ($start_month->month == $end_month->month) {
+            return $start_month->format('d').' - '.$end_month->format('d M Y');
+        } else {
+            return $start_month->format('d M').' - '.$end_month->format('d M Y');
+        }
     }
 
     public function scopeType($query,$type)

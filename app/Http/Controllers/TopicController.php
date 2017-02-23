@@ -12,15 +12,22 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function index()
+//infinit scroll loadmore
+    public function index($type = false)
     {
-        $topics = Topic::with('user')->get();
+        if(!$type) {
+            $topics = Topic::with('user')->limit(5)->get();
+            $type = 'all';
+        } else {
+            $topics = Topic::with('user')->Type($type)->limit(5)->get();
+        }
 
         $data = [
-            'topics' => $topics
+            'topics' => $topics,
+            'type' => $type
         ];
-        return;
+        
+        return view('lists/topic',$data);
     }
 
     /**
@@ -92,16 +99,28 @@ class TopicController extends Controller
 
     public function listing($type = false, $date = false)
     {
-        $topics = Topic::with('user');   
+        try {
+            $topics = Topic::with('user');   
         
-        if ($type && $type != 'all')
-            $topics->Type($type);
+            if ($type && $type != 'all')
+                $topics->Type($type);
+            
+            if ($date)
+                $topics->DatePublish($date);
+            
+            $topics = $topics->paginate(5);
+
+            $response = [
+                'status' => true,
+                'data' => $topics
+            ];
+        } catch (\Exception $e) {
+            $response = [
+                'status' => false,
+                'message' => $e->getMessage()
+            ];
+        }
         
-        if ($date)
-            $topics->DatePublish($date);
-        
-        $topics = $topics->paginate(1);
-        
-        return;
+        return $response;
     }
 }

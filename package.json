@@ -16,5 +16,9 @@
     "tether": "^1.4.0",
     "vue": "^2.0.1",
     "vue-sweetalert": "^0.1.16"
+  },
+  "dependencies": {
+    "vue-infinite-loading": "^2.0.0",
+    "vue-resource": "^1.2.0"
   }
 }

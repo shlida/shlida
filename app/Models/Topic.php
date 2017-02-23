@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Topic extends Model
 {
-
-    protected $appends = array('love_count','comment_count');
+    protected $appends = array('love_count','comment_count','timestamp_content');
 
     public function user()
 	{
@@ -47,6 +47,13 @@ class Topic extends Model
     public function getCommentCountAttribute()
     {
         return $this->comments()->count();
+    }
+
+    public function gettimestampContentAttribute()
+    {
+        $published_on = Carbon::createFromFormat('Y-m-d H:i:s', $this->published_on, 'Asia/Bangkok');
+
+        return $published_on->diffForHumans();
     }
 
     public function scopeType($query,$type)

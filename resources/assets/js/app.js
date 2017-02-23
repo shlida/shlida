@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('vue-resource');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,6 +16,8 @@ require('./bootstrap');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('login-modal-form', require('./components/auth/LoginModalForm.vue'));
+Vue.component('list-box', require('./components/ListBox.vue'));
+Vue.component('scroll', require('./components/Scroll.vue'));
 
 const app = new Vue({
     el: '#app'

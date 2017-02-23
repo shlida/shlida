@@ -17,11 +17,13 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('document');
 });
-Route::get('/document', function () {
-    return view('document');
-});
+// Route::get('/document', function () {
+//     return view('document');
+// });
 
 Route::get('/board', 'TopicController@index');
+Route::get('/board/{type}', 'TopicController@index');
+
 Route::get('/topic/{id}', 'TopicController@show');
 
 Route::group(['prefix' => 'event'], function () {

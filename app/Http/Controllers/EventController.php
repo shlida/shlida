@@ -16,11 +16,11 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::with('places')->get();
-
         $data = [
             'events' => $events
         ];
-        return;
+        
+        return view('lists/event',$data);
     }
 
     /**
