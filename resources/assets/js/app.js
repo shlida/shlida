@@ -15,6 +15,8 @@ require('vue-resource');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('loginmodal', require('./components/LoginModal.vue'));
 Vue.component('login-modal-form', require('./components/auth/LoginModalForm.vue'));
 Vue.component('list-box', require('./components/ListBox.vue'));
 Vue.component('scroll', require('./components/Scroll.vue'));
