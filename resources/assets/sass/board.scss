@@ -1,25 +1,107 @@
-@import "../../../node_modules/bootstrap/scss/_variables.scss";
-@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+@import "_variables.scss";
 
-//@media screen and (max-width: $screen-sm) <--- iPad
-//@media screen and (max-width: $screen-xs) <--- Mobile
+hr {
+    margin: 0;
+}
 
-#webboard-hilight {
-	position: relative;
-	padding: 90px 0 20px;
-	background-image: url('../images/bg-sprinkle.png');
-	background-position: left top;
-	background-repeat: repeat-x;
-	background-size: auto 300px;
-	@media screen and (max-width: $screen-sm) {
-		padding: 70px 0 20px;
+a {
+	text-decoration: none;
+}
+
+.container-fluid {
+	@include media-breakpoint-down(sm) {
+		padding: 0;
+	}
+}
+
+.line-dot {
+    height: 20px;
+    background-image: linear-gradient(to right, #333 20%, rgba(255, 255, 255, 0) 0%);
+    background-position: top;
+    background-size: 4px 1.5px;
+    background-repeat: repeat-x;
+}
+
+#header-wrapper {
+	.board-path {
+		padding: 20px 0;
+	}
+	.board-label {
+		padding-bottom: 20px;
+	}
+}
+
+#slide-wrapper {
+	.paginate {
+		margin: 30px;
+		display: flex;
+	    justify-content: center;
+	    list-style: none;
+	}
+	.paginate li {
+		background: white;
+	    border: 1px solid black;
+	    width: 10px;
+	    height: 10px;
+	    border-radius: 10px;
+	    margin: 10px;
+	}
+	.paginate .active {
+		background: black;
+	}
+}
+
+#issue-wrapper {
+	margin-bottom: 50px;
+	.all-issue {
+		padding-top: 15px;
+	}
+}
+
+#ads-wrapper {
+    width: 100%;
+    background: repeating-linear-gradient(
+        -45deg,
+        white,
+        white 1px,
+        #a8a8a8 1px,
+        #a8a8a8 2px
+    );
+    padding: 15px 0;
+    .ads {
+	    text-align: center;
+	    margin: 0 auto;
+	    width: 300px;
+	    height: 250px;
+	    background: #fff;
+	}
+}
+
+#board-wrapper {
+    .dateLabel {
+	    line-height: 32px;
+    	padding: 20px 0 10px 0;
+	    display: inline-block;
+	}
+    .icon-event {
+        color: orange;
+    }
+    .board-content {
+		@include media-breakpoint-down(sm) {
+			padding: 0;
+		}
+	}
+    .list-card {
+	    @include media-breakpoint-down(sm) {
+        	border: 0;
+	    } 
 	}
 }
 
 #webboard-nav-topic-type {
 	position: relative;
 	padding: 25px 0 10px;
-	@media screen and (max-width: $screen-sm) {
+	@include media-breakpoint-down(sm) {
 		padding-bottom: 6px; 
 		.nav-col {
 			padding: 0;
@@ -29,7 +111,7 @@
 
 #webboard-body {
 	padding: 50px 0 150px;
-	@media screen and (max-width: $screen-sm) {
+	@include media-breakpoint-down(sm) {
 		padding: 30px 0 80px;
 	}
 }
@@ -39,6 +121,7 @@
 		margin: 0 auto;
 		
 		a {
+			color: #000;
 			border-radius: 6px!important; 
 			box-shadow: none;
 			h4 {
@@ -49,55 +132,51 @@
 	}
 	.board-nav {
 		display: block;
-		width: 60px;
-		height: 60px;
-		background: url('../images/nav-topic-type.png');
+		width: 70px;
+		height: 70px;
+		background: url('/../images/nav-topic-type.png');
 		background-size: 420px auto;
 		margin: 0 auto;
 		&.board-all {
 			background-position: 0px 0px;
 			&:hover {
-				background-position: 0px 60px;
-			}
-		}
-		&.board-qa {
-			background-position: -60px 0px;
-			&:hover {
-				background-position: -60px 60px;
+				background-position: 0px 70px;
 			}
 		}
 		&.board-howto {
-			background-position: -120px 0px;
+			background-position: -70px 0px;
 			&:hover {
-				background-position: -120px 60px;
+				background-position: -70px 70px;
 			}
 		}
 		&.board-review {
-			background-position: -180px 0px;
+			background-position: -140px 0px;
 			&:hover {
-				background-position: -180px 60px;
+				background-position: -140px 70px;
 			}
 		}
 		&.board-haul {
-			background-position: -240px 0px;
+			background-position: -210px 0px;
 			&:hover {
-				background-position: -240px 60px;
+				background-position: -210px 70px;
 			}
 		}
-		&.board-others {
-			background-position: -300px 0px;
+		&.board-story {
+			background-position: 280px 0px;
 			&:hover {
-				background-position: -300px 60px;
+				background-position: 280px 70px;
 			}
 		}
-		&.board-jeban {
-			background-position: -360px 0px;
+		&.board-qa {
+			background-position: 350px 0px;
 			&:hover {
-				background-position: -360px 60px;
+				background-position: 350px 70px;
 			}
 		}
 	}
 	li[id*="subnav-"] {
+		width: 100%;
+		min-width: 100px;
 		a {
 			margin: 0; 
 			padding: 0;
@@ -109,39 +188,62 @@
 			a {	background: none; }
 			.board-nav {
 				&.board-all {
-					background-position: 0px 60px;
-				}
-				&.board-qa {
-					background-position: -60px 60px;
+					background-position: 0px 70px;
 				}
 				&.board-howto {
-					background-position: -120px 60px;
+					background-position: -70px 70px;
 				}
 				&.board-review {
-					background-position: -180px 60px;
+					background-position: -140px 70px;
 				}
 				&.board-haul {
-					background-position: -240px 60px;
+					background-position: -210px 70px;
 				}
-				&.board-others {
-					background-position: -300px 60px;
+				&.board-story {
+					background-position: -280px 70px;
 				}
-				&.board-jeban {
-					background-position: 360px 60px;
+				&.board-qa {
+					background-position: -350px 70px;
 				}
 			}
 		}
-		@media screen and (max-width: $screen-sm) {
+		@include media-breakpoint-down(sm) {
 		    display: inline-block;
 		    float: none;
 		    min-width: 94px;
 		}
 	}
 	
-	@media screen and (max-width: $screen-sm) {
+	@include media-breakpoint-down(sm) {
 	    overflow-x: auto;
 	    white-space: nowrap;
 	    padding-bottom: 5px;
 	}
+}
+
+.VueCarousel-slide {
+    position: relative;
+    background: #fff;
+    color: #000;
+    min-height: 460px;
+    @include media-breakpoint-down(md) {
+	    min-height: 680px;
+	}
+	@include media-breakpoint-down(sm) {
+	    min-height: 450px;
+	}
+}
+
+.label {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.VueCarousel-dot-inner {
+    border: 1px solid black;
 }
 

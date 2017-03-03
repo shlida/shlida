@@ -18,8 +18,13 @@ Vue.component('example', require('./components/Example.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('loginmodal', require('./components/LoginModal.vue'));
 Vue.component('login-modal-form', require('./components/auth/LoginModalForm.vue'));
-Vue.component('list-box', require('./components/ListBox.vue'));
+Vue.component('list-card', require('./components/ListCard.vue'));
 Vue.component('scroll', require('./components/Scroll.vue'));
+
+Vue.component('topic-list', require('./components/TopicList.vue'));
+Vue.component('topic-slide', require('./components/TopicSlide.vue'));
+
+Vue.component('event-list', require('./components/EventList.vue'));
 
 const app = new Vue({
     el: '#app'

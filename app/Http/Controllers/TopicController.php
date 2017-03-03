@@ -12,22 +12,26 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-//infinit scroll loadmore
-    public function index($type = false)
+
+    public function index($type = 'all',$date = false)
     {
-        if(!$type) {
-            $topics = Topic::with('user')->limit(5)->get();
-            $type = 'all';
-        } else {
-            $topics = Topic::with('user')->Type($type)->limit(5)->get();
-        }
+        $topics = Topic::with('user');   
+        
+        if ($type != 'all')
+            $topics->Type($type);
+        
+        if ($date)
+            $topics->DatePublish($date);
+        
+        $topics = $topics->limit(20)->orderBy('published_on', 'desc')->get();
 
         $data = [
             'topics' => $topics,
-            'type' => $type
+            'type' => $type,
+            'date' => $date
         ];
-        
-        return view('lists/topic',$data);
+
+        return view('topics/list',$data);
     }
 
     /**
@@ -97,22 +101,23 @@ class TopicController extends Controller
         //
     }
 
-    public function listing($type = false, $date = false)
+    public function listing($type = 'all', $date = false)
     {
         try {
             $topics = Topic::with('user');   
         
-            if ($type && $type != 'all')
+            if ($type != 'all')
                 $topics->Type($type);
             
             if ($date)
                 $topics->DatePublish($date);
             
-            $topics = $topics->paginate(5);
+            $topics = $topics->orderBy('published_on', 'desc')->paginate(20);
 
             $response = [
                 'status' => true,
-                'data' => $topics
+                'data' => $topics,
+                'total' => $topics->total()
             ];
         } catch (\Exception $e) {
             $response = [

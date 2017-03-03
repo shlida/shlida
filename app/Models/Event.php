@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Event extends Model
 {
-    protected $appends = array('date');
+    protected $appends = array('date','love_count','comment_count');
 
     public function places()
 	{
@@ -52,17 +52,41 @@ class Event extends Model
         }
     }
 
+    public function getLoveCountAttribute()
+    {
+        $love = $this->loveUsers()->count();
+        if($love / 1000 >= 1) {
+            $love_decimal = bcdiv($love / 1000, 1, 1);
+            $love = explode(".", $love_decimal);
+            $love = ($love[1]>0) ? $love_decimal : $love[0];
+            return $love.'k';
+        } else {
+            return $love;
+        }
+    }
+
+    public function getCommentCountAttribute()
+    {
+        return $this->comments()->count();
+    }
+
     public function scopeType($query,$type)
     {
         return $query->where('event_type', strtoupper($type));
     }
 
-    public function scopeSortByLates($query)
+    public function scopeSort($query,$sort)
     {
-        return $query->orderBy('id','DESC');
+        if($sort == 'end')
+            return $query->whereRaw('CURDATE() > end_date')->orderBy('start_date','DESC');
+        if($sort == 'upcoming')
+            return $query->whereRaw('CURDATE() < start_date')->orderBy('start_date','ASC');
+        if($sort == 'now')
+            return $query->whereRaw('CURDATE() BETWEEN start_date AND end_date')->orderBy('end_date','ASC');
     }
-    public function scopeSortByUpcoming($query)
+
+    public function scopeCount($query)
     {
-        return $query->whereRaw('CURDATE() <= end_date')->orderBy('start_date','ASC');
+        return $query->whereRaw('CURDATE() > end_date');
     }
 }

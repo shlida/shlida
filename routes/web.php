@@ -20,20 +20,20 @@ Route::get('/home', function () {
 // Route::get('/document', function () {
 //     return view('document');
 // });
-
-Route::get('/board', 'TopicController@index');
-Route::get('/board/{type}', 'TopicController@index');
-
-Route::get('/topic/{id}', 'TopicController@show');
+Route::group(['prefix' => 'board'], function () {
+    Route::get('/', 'TopicController@index');
+    Route::get('/{type}', 'TopicController@index');
+    Route::get('/{type}/{date}', 'TopicController@index');
+});
 
 Route::group(['prefix' => 'event'], function () {
     Route::get('/', 'EventController@index');
-    Route::get('/{id}','EventController@show');
+    Route::get('/{type}', 'EventController@index');
+    Route::get('/{type}/{sort}', 'EventController@index');
 });
 
 Route::group(['prefix' => 'swatch'], function () {
     Route::get('/', 'SwatchController@index');
-    Route::get('/{id}', 'SwatchController@show');
 });
 
 Route::group(['prefix' => 'find'], function () {
@@ -47,6 +47,7 @@ Route::group(['prefix' => 'api/v1'], function () {
 
     Route::get('/event/{type}','EventController@listing');
     Route::get('/event/{type}/{sort}','EventController@listing');
+    Route::get('/event/count','EventController@count');
 
     Route::get('/issue/{keyword}','IssueController@listing');
 });

@@ -13,14 +13,40 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index($type = 'all', $sort = false)
     {
-        $events = Event::with('places')->get();
+        if($sort) {
+            $events = Event::with('places');
+
+            if($type != 'all')
+                $events->Type($type);
+
+            $events = $events->Sort($sort)->limit(20)->get();
+        } else {
+            $now = Event::with('places');
+            $upcoming = Event::with('places');
+            $end = Event::with('places');
+
+            if($type != 'all') {
+                $now->Type($type);
+                $upcoming->Type($type);
+                $end->Type($type);
+            }
+
+            $now = collect($now->Sort('now')->get());
+            $upcoming = collect($upcoming->Sort('upcoming')->get());
+            $end = collect($end->Sort('end')->limit(20)->get());
+
+            $events = $now->merge($upcoming)->merge($end);
+        }
+
         $data = [
-            'events' => $events
+            'events' => $events,
+            'type' => $type,
+            'sort' => $sort
         ];
         
-        return view('lists/event',$data);
+        return view('events/list',$data);
     }
 
     /**
@@ -90,20 +116,34 @@ class EventController extends Controller
         //
     }
 
-    public function listing($type = false, $sort = false)
+    public function listing($type = 'all', $sort = false)
     {
-        $events = Event::with('places');   
+        try {
+            $events = Event::with('places');   
+            
+            if ($type != 'all')
+                $events->Type($type);
+            
+            if($sort) {
+                $events->Sort($sort);
+            } else {
+                $events->Sort('end');
+            }
+           
+            $events = $events->paginate(20);
         
-        if ($type && $type != 'all')
-            $events->Type($type);
+            $response = [
+                'status' => true,
+                'data' => $events,
+                'total' => $events->total()
+            ];
+        } catch (\Exception $e) {
+            $response = [
+                'status' => false,
+                'message' => $e->getMessage()
+            ];
+        }
         
-        if ($sort && $sort == 'latest')
-            $events->SortByLates($sort);
-        elseif ($sort && $sort == 'upcoming')
-            $events->SortByUpcoming($sort);
-        
-        $events = $events->paginate(2);
-        
-        return;
+        return $response;
     }
 }
