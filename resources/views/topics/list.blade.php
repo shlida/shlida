@@ -27,9 +27,7 @@
             </div>
         </div>
         <div id="slide-wrapper">
-            <div class="col-12">
-                <topic-slide></topic-slide>
-            </div>
+            <highlight></highlight>
         </div>
         <div id="issue-wrapper">
             <div class="col-12">

@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 require('vue-resource');
+require('owl.carousel');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,16 +16,19 @@ require('vue-resource');
  */
 
 Vue.component('example', require('./components/Example.vue'));
-Vue.component('modal', require('./components/Modal.vue'));
+// Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('loginmodal', require('./components/LoginModal.vue'));
 Vue.component('login-modal-form', require('./components/auth/LoginModalForm.vue'));
 Vue.component('list-card', require('./components/ListCard.vue'));
 Vue.component('scroll', require('./components/Scroll.vue'));
 
 Vue.component('topic-list', require('./components/TopicList.vue'));
-Vue.component('topic-slide', require('./components/TopicSlide.vue'));
 
 Vue.component('event-list', require('./components/EventList.vue'));
+Vue.component('event-list-modal', require('./components/EventListModal.vue'));
+Vue.component('event-filter-modal', require('./components/EventFilterModal.vue'));
+
+Vue.component('highlight', require('./components/Highlight.vue'));
 
 const app = new Vue({
     el: '#app'

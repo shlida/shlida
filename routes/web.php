@@ -28,8 +28,10 @@ Route::group(['prefix' => 'board'], function () {
 
 Route::group(['prefix' => 'event'], function () {
     Route::get('/', 'EventController@index');
-    Route::get('/{type}', 'EventController@index');
-    Route::get('/{type}/{sort}', 'EventController@index');
+    Route::get('/create', 'EventController@create');
+    Route::post('/store', 'EventController@store');
+    Route::get('/{sort}', 'EventController@index');
+    
 });
 
 Route::group(['prefix' => 'swatch'], function () {
@@ -45,9 +47,8 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('/board/{type}', 'TopicController@listing');
     Route::get('/board/{type}/{date}', 'TopicController@listing');
 
-    Route::get('/event/{type}','EventController@listing');
-    Route::get('/event/{type}/{sort}','EventController@listing');
-    Route::get('/event/count','EventController@count');
+    Route::get('/event/{sort}','EventController@listing');
+    Route::get('/event/on/{date}','EventController@dateListing');
 
     Route::get('/issue/{keyword}','IssueController@listing');
 });

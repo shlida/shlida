@@ -26,9 +26,12 @@
                 <i class="icon-event"></i><h5 style="display: inline;">EVENT</h5>
             </div>
         </div>
+        <div id="slide-wrapper">
+            <highlight></highlight>
+        </div>
         <div id="event-wrapper">
             @if (collect($events)->count() > 0)
-                <event-list :data="{{ $events }}" type="{{ $type }}" sort="{{ $sort }}"></event-list>
+                <event-list :data="{{ $events }}"></event-list>
             @else 
                 no data
             @endif

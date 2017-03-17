@@ -72,7 +72,12 @@ class Event extends Model
 
     public function scopeType($query,$type)
     {
-        return $query->where('event_type', strtoupper($type));
+        foreach ($type as $key => $value) {
+            if ($key == 0)
+                $query->where('event_type', strtoupper($value));
+            else
+                $query->orWhere('event_type', strtoupper($value));
+        }
     }
 
     public function scopeSort($query,$sort)
@@ -82,11 +87,11 @@ class Event extends Model
         if($sort == 'upcoming')
             return $query->whereRaw('CURDATE() < start_date')->orderBy('start_date','ASC');
         if($sort == 'now')
-            return $query->whereRaw('CURDATE() BETWEEN start_date AND end_date')->orderBy('end_date','ASC');
+            return $query->whereRaw('CURDATE() BETWEEN start_date AND end_date')->orderBy('start_date','DESC');
     }
 
-    public function scopeCount($query)
+    public function scopeDate($query,$date)
     {
-        return $query->whereRaw('CURDATE() > end_date');
+        return $query->whereRaw("'$date' BETWEEN start_date AND end_date")->orderBy('start_date','DESC');
     }
 }

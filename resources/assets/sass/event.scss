@@ -14,12 +14,41 @@ a {
 	}
 }
 
+.line-dot {
+    height: 20px;
+    background-image: linear-gradient(to right, #333 20%, rgba(255, 255, 255, 0) 0%);
+    background-position: top;
+    background-size: 4px 1.5px;
+    background-repeat: repeat-x;
+}
+
 #header-wrapper {
 	.board-path {
-		padding: 20px 0;
+		padding: 10px 0;
 	}
 	.board-label {
 		padding-bottom: 20px;
+	}
+}
+
+#slide-wrapper {
+	padding-bottom: 50px;
+	.paginate {
+		margin: 30px;
+		display: flex;
+	    justify-content: center;
+	    list-style: none;
+	}
+	.paginate li {
+		background: white;
+	    border: 1px solid black;
+	    width: 10px;
+	    height: 10px;
+	    border-radius: 10px;
+	    margin: 10px;
+	}
+	.paginate .active {
+		background: black;
 	}
 }
 

@@ -30,3 +30,21 @@
 2017-01-27 10:59:53,908 INFO spawned: 'mariadb' with pid 11
 2017-01-27 10:59:55,797 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2017-01-27 10:59:55,825 INFO success: mariadb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-03-09 01:20:59,919 CRIT Set uid to user 0
+2017-03-09 01:20:59,929 INFO supervisord started with pid 6
+2017-03-09 01:21:00,932 INFO spawned: 'httpd' with pid 9
+2017-03-09 01:21:00,937 INFO spawned: 'mariadb' with pid 10
+2017-03-09 01:21:01,207 INFO exited: httpd (exit status 0; not expected)
+2017-03-09 01:21:02,375 INFO spawned: 'httpd' with pid 29
+2017-03-09 01:21:02,378 INFO success: mariadb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-03-09 01:21:03,460 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-03-10 11:42:41,454 CRIT Set uid to user 0
+2017-03-10 11:42:41,467 INFO supervisord started with pid 6
+2017-03-10 11:42:42,476 INFO spawned: 'httpd' with pid 9
+2017-03-10 11:42:42,491 INFO spawned: 'mariadb' with pid 10
+2017-03-10 11:42:42,568 INFO exited: httpd (exit status 1; not expected)
+2017-03-10 11:42:43,740 INFO spawned: 'httpd' with pid 29
+2017-03-10 11:42:43,742 INFO success: mariadb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-03-10 11:42:43,793 INFO exited: httpd (exit status 0; not expected)
+2017-03-10 11:42:45,807 INFO spawned: 'httpd' with pid 32
+2017-03-10 11:42:46,842 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

@@ -43,7 +43,7 @@ export default {
         onInfinite() {
             let url = api+'/'+this.type
             if(this.date) {
-                url = url+'/'+this.type+this.date
+                url = url+'/'+this.type+'/'+this.date
             }
             console.log(url)
             this.$http.get(url, {
@@ -53,11 +53,11 @@ export default {
             }).then((res) => {
                 var status = res.data.status;
                 var data = res.data.data;
-                if (status && data.total > limit) {
+                if (status && this.list.length < data.total) {
                     this.list = this.list.concat(data.data);
                     this.initListGroup()
                     this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
-                    if (this.list.length == data.total) {
+                    if (this.list.length == data.total || data.total < limit) {
                         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
                     }
                 } else {
